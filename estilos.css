@@ -17,6 +17,9 @@
     height: 80px;
     border-radius: 10px;
 }
+.bloqueado {
+    pointer-events: none;
+}
 .iluminada {
     background-color: rgb(216, 91, 179);
 }
