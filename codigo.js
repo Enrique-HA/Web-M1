@@ -2,8 +2,11 @@ let secuencia = [];
 let posicionJugador = 0;
 const casillas = document.querySelectorAll(".casilla");
 const tablero = document.querySelector("#tablero");
+let ronda=0;
 
 function jugarRonda() {
+    ronda++;
+    document.querySelector("#NumRonda").textContent = ronda;
     let nuevaCasilla = Math.floor(Math.random() * 9) + 1;
     secuencia.push(nuevaCasilla);
     mostrarSecuencia();
@@ -33,9 +36,10 @@ function comprobarClick(casilla) {
             jugarRonda();
         }
     }else{
-        console.log("Has perdido");
+        alert("Has perdido");
         secuencia = [];
         posicionJugador = 0;
+        ronda=0;
         jugarRonda();
     }
 }
