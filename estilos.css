@@ -31,3 +31,7 @@
 body{
     background-color: beige;
 }
+body.modoOscuro{
+    background: #3a0a50;
+    color: white;
+  }

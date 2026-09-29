@@ -49,3 +49,8 @@ jugarRonda();
 for (let casilla of casillas) {
     casilla.addEventListener("click", ()=> {comprobarClick(casilla)});
 }
+document.addEventListener("keydown",(event) => {
+    if (event.key==="k") {
+      document.body.classList.toggle("modoOscuro");
+    }
+  });
