@@ -3,23 +3,25 @@ let posicionJugador = 0;
 const casillas = document.querySelectorAll(".casilla");
 const tablero = document.querySelector("#tablero");
 let ronda=0;
+const numeroDeCasillas = 9;
 
 function jugarRonda() {
     ronda++;
-    document.querySelector("#NumRonda").textContent = ronda;
-    let nuevaCasilla = Math.floor(Math.random() * 9) + 1;
+    document.querySelector("#numRonda").textContent = ronda;
+    let nuevaCasilla = Math.floor(Math.random() * numeroDeCasillas) + 1;
     secuencia.push(nuevaCasilla);
     mostrarSecuencia();
 }
 function mostrarSecuencia(){
     tablero.classList.add("bloqueado");
-    console.log(secuencia);
+    document.querySelector("#orden").textContent = "Observa"
     let tiempo = 500;
-    for (const numero of secuencia) {
+    for(const numero of secuencia) {
         setTimeout(() => {iluminarCasilla(numero);},tiempo);
         tiempo+=750;
     }
     setTimeout(() => {tablero.classList.remove("bloqueado");},tiempo);
+    setTimeout(() => {document.querySelector("#orden").textContent = "Replica";},tiempo);
 }
 function iluminarCasilla(numero){
     const casillaActual = casillas[numero - 1];
@@ -44,7 +46,6 @@ function comprobarClick(casilla) {
     }
 }
 jugarRonda();
-
 for (let casilla of casillas) {
     casilla.addEventListener("click", ()=> {comprobarClick(casilla)});
 }

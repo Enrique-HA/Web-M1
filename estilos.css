@@ -23,3 +23,11 @@
 .iluminada {
     background-color: rgb(216, 91, 179);
 }
+#juego {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body{
+    background-color: beige;
+}
