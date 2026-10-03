@@ -7,7 +7,7 @@ const numeroDeCasillas = 9;
 
 function jugarRonda() {
     ronda++;
-    document.querySelector("#numRonda").textContent = ronda;
+    document.querySelector("#numRonda").textContent = `Ronda: ${ronda}`;
     let nuevaCasilla = Math.floor(Math.random() * numeroDeCasillas) + 1;
     secuencia.push(nuevaCasilla);
     mostrarSecuencia();
@@ -20,7 +20,8 @@ function mostrarSecuencia(){
         setTimeout(() => {iluminarCasilla(numero);},tiempo);
         tiempo+=750;
     }
-    setTimeout(() => {tablero.classList.remove("bloqueado");},tiempo);
+    //Las siguientes dos funciones usan el tiempo acumulado, porque se busca que se ejecuten después de lo anterior
+    setTimeout(() => {tablero.classList.remove("bloqueado");},tiempo); 
     setTimeout(() => {document.querySelector("#orden").textContent = "Replica";},tiempo);
 }
 function iluminarCasilla(numero){
@@ -32,16 +33,22 @@ function comprobarClick(casilla) {
 
     let numero = Number(casilla.textContent);
     if (numero === secuencia[posicionJugador]) {
-        posicionJugador++;
-        if (posicionJugador===secuencia.length) {
-            posicionJugador = 0;
-            jugarRonda();
-        }
+        continuar();
     }else{
-        alert("Has perdido");
-        secuencia = [];
+        reiniciar();
+    }
+}
+function reiniciar(){
+    alert("Has perdido");
+    secuencia = [];
+    posicionJugador = 0;
+    ronda=0;
+    jugarRonda();
+}
+function continuar(){
+    posicionJugador++;
+    if (posicionJugador===secuencia.length) {
         posicionJugador = 0;
-        ronda=0;
         jugarRonda();
     }
 }
